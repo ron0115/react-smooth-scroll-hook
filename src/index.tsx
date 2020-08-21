@@ -5,11 +5,11 @@ export enum Direction {
 }
 
 export type UseSmoothScrollType = {
-  /** 传入`overflow:scroll`容器的ref */
+  /** the container RefObject which use `overflow:scroll` */
   ref: React.RefObject<HTMLElement>;
-  /** 每一帧滑动的路程，单位为1px，指定后会使用rAF模式 */
+  /** distance per frame, reflects to speed while scrolling */
   speed?: number;
-  /** 滚动方向 */
+  /** scroll direction, you can use 'x` for vertical, 'y` for horizontal */
   direction?: Direction | 'x' | 'y';
   threshold?: number;
 };
@@ -22,7 +22,7 @@ export type AttrMapType = {
   offsetWidthHeight: 'offsetWidth' | 'offsetHeight';
   leftTop: 'top' | 'left';
 };
-// 获取元素与当前滚动条位置的相对距离
+// get the relative distance from destination
 const getRelativeDistance = (
   target: number | string,
   parent: HTMLElement,
