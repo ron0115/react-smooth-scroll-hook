@@ -39,12 +39,11 @@ jobs:
       #   env:
       #     CI: true
 
-      - name: Build
-        run: yarn build
+      - name: Release
+        run: |
+          yarn build
+          npm run release
+          npm run deploy-storybook -- --ci
         env:
           CI: true
-
-      - name: Page
-        run: npm run deploy-storybook -- --ci
-        env:
-          CI: true
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
