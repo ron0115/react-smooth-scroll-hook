@@ -1,5 +1,8 @@
-name: CI
-on: [push]
+name: Deploy
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,12 +34,16 @@ jobs:
         env:
           CI: true
 
-      - name: Test
-        run: yarn test --ci --coverage --maxWorkers=2
-        env:
-          CI: true
+      # - name: Test
+      #   run: yarn test --ci --coverage --maxWorkers=2
+      #   env:
+      #     CI: true
 
-      - name: Build
-        run: yarn build
+      - name: Release
+        run: |
+          yarn build
+          npm run release
+          npm run deploy-storybook -- --ci
         env:
           CI: true
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
