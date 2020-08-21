@@ -1,12 +1,18 @@
 import React, { useRef, useState } from 'react';
 import useSmoothScroll from '../src/index';
+import { Description } from '@storybook/addon-docs/dist/blocks';
 import './index.css';
+
 export default {
   title: '@Hooks/useSmoothScroll',
   component: useSmoothScroll,
 };
 
-export const Docs = () => <></>;
+export const Docs = () => (
+  <>
+    <Description markdown={require('../README.md').default} />{' '}
+  </>
+);
 
 export const Demo = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -29,20 +35,18 @@ export const Demo = () => {
           padding: '10px',
         }}
       >
-        <div>
-          {Array(100)
-            .fill(null)
-            .map((_item, i) => (
-              <div key={i} id={`y-item-${i}`}>
-                y-item-{i}
-              </div>
-            ))}
-        </div>
+        {Array(100)
+          .fill(null)
+          .map((_item, i) => (
+            <div key={i} id={`y-item-${i}`}>
+              y-item-{i}
+            </div>
+          ))}
       </div>
     </>
   );
 };
-Demo.storyName = '基本使用';
+Demo.storyName = 'Basic';
 
 export const DirectionX = () => {
   const [speed, setSpeed] = useState(50);
@@ -61,7 +65,7 @@ export const DirectionX = () => {
         scrollTo('#x-item-40')
       </button>
       <button onClick={() => scrollTo(Infinity)}>
-        滚到底部scrollTo(Infinity)
+        scrollTo Edge - scrollTo(Infinity)
       </button>
       <button onClick={() => scrollTo(100)}>scrollTo(100)</button>
       <button onClick={() => scrollTo(-100)}>scrollTo(-100)</button>
@@ -109,4 +113,4 @@ export const DirectionX = () => {
     </>
   );
 };
-DirectionX.storyName = '横向滚动';
+DirectionX.storyName = 'More Use';

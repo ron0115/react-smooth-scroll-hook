@@ -1,5 +1,8 @@
-name: CI
-on: [push]
+name: Deploy
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,5 +41,10 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          CI: true
+
+      - name: Page
+        run: npm run deploy-storybook -- --ci
         env:
           CI: true
