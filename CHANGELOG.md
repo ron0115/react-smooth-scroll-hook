@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.0.0...v1.0.1) (2020-08-22)
+
+
+### Bug Fixes
+
+* default to use native scrollTo ([2b0b244](https://github.com/ron0115/react-smooth-scroll-hook/commit/2b0b244b6d3607907a0df6d42546a27a22c67544))
+
 # 1.0.0 (2020-08-21)
 
 
