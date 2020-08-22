@@ -7,6 +7,11 @@
     "dist",
     "src"
   ],
+  "homepage": "https://github.com/ron0115/react-smooth-scroll-hook#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ron0115/react-smooth-scroll-hook.git"
+  },
   "engines": {
     "node": ">=10"
   },
@@ -48,7 +53,6 @@
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@storybook/addon-actions": "^6.0.16",
     "@storybook/addon-docs": "^6.0.16",
-    "@storybook/addon-info": "^5.3.19",
     "@storybook/addon-links": "^6.0.16",
     "@storybook/addons": "^6.0.16",
     "@storybook/react": "^6.0.16",
