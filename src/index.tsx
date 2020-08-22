@@ -5,7 +5,7 @@ export enum Direction {
 }
 
 export type UseSmoothScrollType = {
-  /** the container RefObject which use `overflow:scroll` */
+  /** the container dom RefObject which use `overflow:scroll` */
   ref: React.RefObject<HTMLElement>;
   /** distance per frame, reflects to speed while scrolling */
   speed?: number;
@@ -28,10 +28,13 @@ const getRelativeDistance = (
   parent: HTMLElement,
   attrMap: AttrMapType
 ) => {
-  if (!target) return 0;
   if (typeof target === 'number') return target;
   if (typeof target === 'string') {
-    const elm = document.querySelector(target) as HTMLElement;
+    const elm = document.querySelector(target);
+    if (!elm) {
+      console.warn('Please pass correct selector string for scrollTo()!');
+      return 0;
+    }
     const dis =
       elm.getBoundingClientRect()[attrMap.leftTop] -
       parent.getBoundingClientRect()[attrMap.leftTop];
@@ -42,7 +45,7 @@ const getRelativeDistance = (
 
 export const useSmoothScroll = ({
   ref,
-  speed = 40,
+  speed,
   direction = Direction.Y,
   threshold = 1,
 }: UseSmoothScrollType) => {
@@ -59,8 +62,19 @@ export const useSmoothScroll = ({
   };
 
   const scrollTo = (target: number | string) => {
+    if (!ref || !ref.current) {
+      console.warn(
+        'Please pass `ref` property for your scroll container! \n Get more info at https://github.com/ron0115/react-smooth-scroll-hook'
+      );
+      return;
+    }
     const elm = ref.current;
     if (!elm) return;
+    if (!target) {
+      console.warn(
+        'Please pass a valid property for `scrollTo()`! \n Get more info at https://github.com/ron0115/react-smooth-scroll-hook'
+      );
+    }
     const initScrollLeftTop = elm[attrMap.scrollLeftTop];
     const distance = getRelativeDistance(target, elm, attrMap);
 
@@ -72,7 +86,7 @@ export const useSmoothScroll = ({
         behavior: 'smooth',
       });
     } else {
-      let _speed = speed;
+      let _speed = speed || 100;
       const cb = () => {
         // scroll to edge
         if (
@@ -86,11 +100,11 @@ export const useSmoothScroll = ({
         const gone = () =>
           Math.abs(elm[attrMap.scrollLeftTop] - initScrollLeftTop);
 
-        if (Math.abs(distance) - gone() < speed) {
+        if (Math.abs(distance) - gone() < _speed) {
           _speed = Math.abs(distance) - gone();
         }
 
-        // 每个帧，通常为1/60s内滚动条移动的距离
+        // distance to run every frame，always 1/60s
         elm[attrMap.scrollLeftTop] += _speed * (distance > 0 ? 1 : -1);
 
         // reach destination, threshold defaults to 1
