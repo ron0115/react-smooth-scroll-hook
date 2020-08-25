@@ -7,125 +7,16 @@ export default {
   title: 'useSmoothScroll',
   component: useSmoothScroll,
 };
-
+import { Demo } from '../example/Demo.stories';
+import { DirectionX } from '../example/DirectionX.stories';
 export const Docs = () => (
   <>
-    <Description markdown={require('../README.md').default} />{' '}
+    <Description markdown={require('../README.md').default} />
   </>
 );
-
-export const Demo = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollTo } = useSmoothScroll({
-    ref,
-  });
-
-  return (
-    <>
-      <button onClick={() => scrollTo('#y-item-20')}>
-        scrollTo('#y-item-20')
-      </button>
-      <button onClick={() => scrollTo(400)}>scrollTo(400)</button>
-      <br />
-      <div
-        ref={ref}
-        style={{
-          overflowY: 'scroll',
-          maxHeight: '200px',
-          padding: '10px',
-        }}
-      >
-        {Array(100)
-          .fill(null)
-          .map((_item, i) => (
-            <div key={i} id={`y-item-${i}`}>
-              y-item-{i}
-            </div>
-          ))}
-      </div>
-    </>
-  );
-};
+export { Demo };
+export { DirectionX };
+// @ts-ignore
 Demo.storyName = 'Basic';
-
-export const DirectionX = () => {
-  const [speed, setSpeed] = useState(50);
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollTo, reachTop, reachBottom, scrollToPage } = useSmoothScroll({
-    ref,
-    direction: 'x',
-    speed,
-  });
-  const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setSpeed(Number(evt.target.value));
-  };
-  return (
-    <>
-      <button onClick={() => scrollTo('#x-item-20')}>
-        scrollTo('#x-item-20')
-      </button>
-      <button onClick={() => scrollTo(Infinity)}>
-        scrollTo Edge - scrollTo(Infinity)
-      </button>
-      <button onClick={() => scrollTo(-Infinity)}>
-        scrollTo Edge - scrollTo(-Infinity)
-      </button>
-      <button onClick={() => scrollTo(100)}>scrollTo(100)</button>
-      <button onClick={() => scrollTo(-100)}>scrollTo(-100)</button>
-
-      <br />
-      <div>
-        speed:{speed}
-        <br />
-        <input
-          value={speed}
-          onChange={onChange}
-          type="range"
-          min={100}
-          max={500}
-        />
-        <br />
-        reachTop: {String(reachTop)}
-        <br />
-        reachBottom: {String(reachBottom)}
-      </div>
-      <br />
-      <button disabled={reachBottom} onClick={() => scrollToPage(1)}>
-        scrollToPage(1)
-      </button>
-      <button disabled={reachTop} onClick={() => scrollToPage(-1)}>
-        scrollToPage(-1)
-      </button>
-
-      <div
-        ref={ref}
-        style={{
-          overflowX: 'scroll',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            padding: '10px',
-          }}
-        >
-          {Array(50)
-            .fill(null)
-            .map((_item, i) => (
-              <div
-                key={i}
-                id={`x-item-${i}`}
-                style={{
-                  flexShrink: 0,
-                  padding: '10px',
-                }}
-              >
-                x-item-{i}
-              </div>
-            ))}
-        </div>
-      </div>
-    </>
-  );
-};
+// @ts-ignore
 DirectionX.storyName = 'More Use';
