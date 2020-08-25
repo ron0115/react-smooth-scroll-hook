@@ -1,34 +1,21 @@
-import React, { useState, useRef } from 'react';
-import useSmoothScroll from 'react-smooth-scroll-hook';
+import React, { useState, useRef } from "react";
+import useSmoothScroll from "react-smooth-scroll-hook";
 
 export const DirectionX = () => {
-  const [speed, setSpeed] = useState(50);
+  const [speed, setSpeed] = useState(200);
   const ref = useRef<HTMLDivElement>(null);
   const { scrollTo, reachTop, reachBottom, scrollToPage } = useSmoothScroll({
     ref,
-    direction: 'x',
-    speed,
+    direction: "x",
+    speed
   });
   const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setSpeed(Number(evt.target.value));
   };
   return (
     <>
-      <button onClick={() => scrollTo('#x-item-20')}>
-        scrollTo('#x-item-20')
-      </button>
-      <button onClick={() => scrollTo(Infinity)}>
-        scrollTo Edge - scrollTo(Infinity)
-      </button>
-      <button onClick={() => scrollTo(-Infinity)}>
-        scrollTo Edge - scrollTo(-Infinity)
-      </button>
-      <button onClick={() => scrollTo(100)}>scrollTo(100)</button>
-      <button onClick={() => scrollTo(-100)}>scrollTo(-100)</button>
-
-      <br />
       <div>
-        speed:{speed}
+        <strong>speed:{speed}</strong>
         <br />
         <input
           value={speed}
@@ -37,29 +24,52 @@ export const DirectionX = () => {
           min={100}
           max={500}
         />
-        <br />
-        reachTop: {String(reachTop)}
-        <br />
-        reachBottom: {String(reachBottom)}
       </div>
       <br />
-      <button disabled={reachBottom} onClick={() => scrollToPage(1)}>
-        scrollToPage(1)
-      </button>
-      <button disabled={reachTop} onClick={() => scrollToPage(-1)}>
-        scrollToPage(-1)
-      </button>
-
+      <strong>
+        Pass string:
+        <button onClick={() => scrollTo("#x-item-20")}>
+          scrollTo('#x-item-20')
+        </button>
+      </strong>
+      <br />
+      <strong>
+        Pass number:
+        <button onClick={() => scrollTo(100)}>scrollTo(100)</button>
+        <button onClick={() => scrollTo(-100)}>scrollTo(-100)</button>
+      </strong>
+      <br />
+      <strong>
+        Scroll to Edge:
+        <button onClick={() => scrollTo(Infinity)}>scrollTo Bottom</button>
+        <button onClick={() => scrollTo(-Infinity)}>scrollTo Top</button>
+      </strong>
+      <br />
+      <strong>
+        Scroll to Page:
+        <button disabled={reachBottom} onClick={() => scrollToPage(1)}>
+          scrollToPage(1)
+        </button>
+        <button disabled={reachTop} onClick={() => scrollToPage(-1)}>
+          scrollToPage(-1)
+        </button>
+      </strong>
+      <br />
+      <br />
+      reachTop: {String(reachTop)}
+      <br />
+      reachBottom: {String(reachBottom)}
+      <br />
       <div
         ref={ref}
         style={{
-          overflowX: 'scroll',
+          overflowX: "scroll"
         }}
       >
         <div
           style={{
-            display: 'flex',
-            padding: '10px',
+            display: "flex",
+            padding: "10px"
           }}
         >
           {Array(50)
@@ -70,7 +80,7 @@ export const DirectionX = () => {
                 id={`x-item-${i}`}
                 style={{
                   flexShrink: 0,
-                  padding: '10px',
+                  padding: "10px"
                 }}
               >
                 x-item-{i}
