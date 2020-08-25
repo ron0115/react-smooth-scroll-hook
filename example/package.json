@@ -8,12 +8,11 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "react-app-polyfill": "^1.0.0"
-  },
-  "alias": {
-    "react": "../node_modules/react",
-    "react-dom": "../node_modules/react-dom/profiling",
-    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
+    "@types/node": "14.6.0",
+    "react": "16.13.1",
+    "react-app-polyfill": "^1.0.0",
+    "react-dom": "16.13.1",
+    "react-smooth-scroll-hook": "1.2.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.11",
