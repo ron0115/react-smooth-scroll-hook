@@ -6,7 +6,7 @@ Basically; `useSmoothScroll` hook use `requestAnimationFrame` to finish smooth s
 
 If you want to control the `speed` of scroll behaviour, it defaults to use `requestAnimationFrame` mode.
 
-**Examples are <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/hooks-usesmoothscroll--direction-x#basic" >Here</a>.**(Storybook)
+**Examples are <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/usesmoothscroll--docs#basic" >Here</a>.**(Storybook)
 
 **Live demo is <a target="_blank" href="https://codesandbox.io/s/react-smooth-scroll-hook-vhudw?file=/src/App.js" >Here</a>.**(Codesandbox)
 
