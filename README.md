@@ -2,17 +2,21 @@
 
 This is a hook to control your scrollbar in react component!
 
-**Live demo is <a target="_blank" href="https://codesandbox.io/s/react-smooth-scroll-hook-vhudw?file=/src/App.js" >Here</a>.**
-
 Basically; `useSmoothScroll` hook checks the `HTMLElement`'s API `scrollTo`, otherwise, use `requestAnimationFrame` to finish smooth scroll behaviour!
 
 If you want to control the `speed` of scroll behaviour, it defaults to use `requestAnimationFrame` mode.
 
+**Examples are <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/hooks-usesmoothscroll--direction-x#basic" >Here</a>.**(Storybook)
+
+**Live demo is <a target="_blank" href="https://codesandbox.io/s/react-smooth-scroll-hook-vhudw?file=/src/App.js" >Here</a>.**(Codesandbox)
+
 ## Feature
 
-- You don't need to warn about compatibility, it use rAF api on low version browsers.
-- Provide `speed` on your demand, otherwise it would use the native API `element.scrollTo`.
-- Provide `direction` option ,you can set `x` for vertical, `y` for horizontal.
+- 🚀 You don't need to warn about compatibility, it use `requsetAnimationFrame` api to finish smooth scroll behaviour.
+
+- 👉 Provide `direction` option ,you can set `x` for vertical, `y` for horizontal.
+
+- 💧 No Third Party dependencies, light and pure.
 
 ## Installation
 
@@ -65,7 +69,18 @@ export const Demo = () => {
 
 ### Returns of Hook
 
-- `scrollTo(string | number)`
+- **scrollTo** `(string|number) => void`
 
   - Pass `number`: the distance to scroll, e.g. `scrollTo(400)`
   - Pass `string`: the element seletor you want to scrollTo, passing to `document.querySelector`, e.g. `scrollTo('#your-dom-id')`
+
+- **reachTop** `boolean`: Whether it is reach top of scrollContainer
+
+- **reachBottom** `boolean`: Whether it is reach bottom of scrollContainer
+
+- **scrollToPage** `(number) => void`: Pass page(`number`), which scroll to a distance as multiples of container size(`offsetWidth`/`offsetHeight`)
+  .e.g `scrollToPage(1)`,`scrollToPage(-1)`
+
+- **refreshState** `() => void`: Manually refresh the state of `reachTop` and `reachBottom`, just an API as you need, and possibly useful in some situation.
+
+- **refreshSize** `() => void`: Manually refresh the size of ref container, just an API as you need, and possibly useful in some situation.
