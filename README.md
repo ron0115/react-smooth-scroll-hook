@@ -1,10 +1,6 @@
 # react-smooth-scroll-hook
 
-This is a hook to control your scrollbar in react component!
-
-Basically; `useSmoothScroll` hook use `requestAnimationFrame` to finish smooth scroll behaviour!
-
-If you want to control the `speed` of scroll behaviour, it defaults to use `requestAnimationFrame` mode.
+The `useSmoothScroll` hook finish smooth scroll behaviour in react component by `requestAnimationFrame`.
 
 **Examples are <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/usesmoothscroll--docs#basic" >Here</a>.**(Storybook)
 
@@ -33,6 +29,8 @@ export const Demo = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollTo } = useSmoothScroll({
     ref,
+    speed: 100,
+    direction: 'y',
   });
 
   return (
@@ -45,15 +43,13 @@ export const Demo = () => {
           maxHeight: '200px',
         }}
       >
-        <div>
-          {Array(100)
-            .fill(null)
-            .map((_item, i) => (
-              <div key={i} id={`item-${i}`}>
-                y-{i}
-              </div>
-            ))}
-        </div>
+        {Array(100)
+          .fill(null)
+          .map((_item, i) => (
+            <div key={i} id={`item-${i}`}>
+              item-{i}
+            </div>
+          ))}
       </div>
     </>
   );
