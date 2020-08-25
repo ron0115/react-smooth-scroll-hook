@@ -4,6 +4,7 @@ on:
     branches:
       - master
     paths-ignore:
+      - '.github/main.yaml'
       - '**/README.md'
 jobs:
   build:
