@@ -3,9 +3,15 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - '.github/main.yaml'
-      - 'README.md'
+    paths:
+      - 'src/**'
+
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'src/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
