@@ -1,4 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+
+function debounce(cb: Function, delay = 100) {
+  let timer: NodeJS.Timeout;
+  return function(...args: any) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const _this = this;
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      cb.apply(_this, args);
+    }, delay);
+  };
+}
+
 export enum Direction {
   X = 'x',
   Y = 'y',
@@ -24,7 +40,7 @@ export type AttrMapType = {
 };
 // get the relative distance from destination
 const getRelativeDistance = (
-  target: number | string,
+  target: number | string | undefined,
   parent: HTMLElement,
   attrMap: AttrMapType
 ) => {
@@ -45,7 +61,7 @@ const getRelativeDistance = (
 
 export const useSmoothScroll = ({
   ref,
-  speed,
+  speed = 100,
   direction = Direction.Y,
   threshold = 1,
 }: UseSmoothScrollType) => {
@@ -61,7 +77,41 @@ export const useSmoothScroll = ({
       Direction.X === direction ? 'clientWidth' : 'clientHeight',
   };
 
-  const scrollTo = (target: number | string) => {
+  const [reachTop, setReachTop] = useState(true);
+  const [reachBottom, setReachBottom] = useState(true);
+  const [size, setSize] = useState(0);
+
+  const isTopEdge = () => {
+    const elm = ref.current;
+    if (!elm) return false;
+    return elm[attrMap.scrollLeftTop] === 0;
+  };
+
+  const isBottomEdge = () => {
+    const elm = ref.current;
+    if (!elm) return false;
+    return (
+      Math.abs(
+        elm[attrMap.scrollLeftTop] +
+          elm[attrMap.clientWidthHeight] -
+          elm[attrMap.scrollWidthHeight]
+      ) < threshold
+    );
+  };
+
+  const refreshSize = debounce(() => {
+    if (ref.current) {
+      const size = ref.current[attrMap.clientWidthHeight];
+      setSize(size);
+    }
+  });
+
+  const refreshState = debounce((_evt: Event) => {
+    isTopEdge() ? setReachTop(true) : setReachTop(false);
+    isBottomEdge() ? setReachBottom(true) : setReachBottom(false);
+  });
+
+  const scrollTo = (target?: number | string) => {
     if (!ref || !ref.current) {
       console.warn(
         'Please pass `ref` property for your scroll container! \n Get more info at https://github.com/ron0115/react-smooth-scroll-hook'
@@ -70,7 +120,7 @@ export const useSmoothScroll = ({
     }
     const elm = ref.current;
     if (!elm) return;
-    if (!target) {
+    if (!target && typeof target !== 'number') {
       console.warn(
         'Please pass a valid property for `scrollTo()`! \n Get more info at https://github.com/ron0115/react-smooth-scroll-hook'
       );
@@ -78,47 +128,95 @@ export const useSmoothScroll = ({
     const initScrollLeftTop = elm[attrMap.scrollLeftTop];
     const distance = getRelativeDistance(target, elm, attrMap);
 
-    if (distance === 0) return;
+    let _speed = speed;
+    const cb = () => {
+      refreshState();
 
-    if (elm.scrollTo && !speed) {
-      elm.scrollTo({
-        [attrMap.leftTop]: elm[attrMap.scrollLeftTop] + distance,
-        behavior: 'smooth',
-      });
-    } else {
-      let _speed = speed || 100;
-      const cb = () => {
-        // scroll to edge
-        if (
-          distance > 0
-            ? elm[attrMap.scrollLeftTop] + elm[attrMap.clientWidthHeight] >=
-              elm[attrMap.scrollWidthHeight]
-            : elm[attrMap.scrollLeftTop] === 0
-        ) {
-          return;
-        }
-        const gone = () =>
-          Math.abs(elm[attrMap.scrollLeftTop] - initScrollLeftTop);
+      if (distance === 0) return;
 
-        if (Math.abs(distance) - gone() < _speed) {
-          _speed = Math.abs(distance) - gone();
-        }
+      if ((isBottomEdge() && distance > 9) || (distance < 0 && isTopEdge()))
+        return;
 
-        // distance to run every frame，always 1/60s
-        elm[attrMap.scrollLeftTop] += _speed * (distance > 0 ? 1 : -1);
+      const gone = () =>
+        Math.abs(elm[attrMap.scrollLeftTop] - initScrollLeftTop);
 
-        // reach destination, threshold defaults to 1
-        if (Math.abs(gone() - Math.abs(distance)) < threshold) {
-          return;
-        }
+      if (Math.abs(distance) - gone() < _speed) {
+        _speed = Math.abs(distance) - gone();
+      }
 
-        requestAnimationFrame(cb);
-      };
+      // distance to run every frame，always 1/60s
+      elm[attrMap.scrollLeftTop] += _speed * (distance > 0 ? 1 : -1);
+
+      // reach destination, threshold defaults to 1
+      if (Math.abs(gone() - Math.abs(distance)) < threshold) {
+        return;
+      }
+
       requestAnimationFrame(cb);
-    }
+    };
+    requestAnimationFrame(cb);
   };
+
+  // detect dom changes
+  useEffect(() => {
+    if (!ref.current) return;
+    refreshState();
+    refreshSize();
+    const observer = new MutationObserver((mutationsList, _observer) => {
+      // Use traditional 'for loops' for IE 11
+      for (const mutation of mutationsList) {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.target instanceof Element
+        ) {
+          refreshSize();
+        }
+      }
+    });
+    observer.observe(ref.current, {
+      attributes: true,
+    });
+    window.addEventListener('resize', refreshSize);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', refreshSize);
+    };
+  }, [ref]);
+
+  // detect scrollbar changes
+  useEffect(() => {
+    if (!ref.current) return;
+    const observer = new MutationObserver((mutationsList, _observer) => {
+      // Use traditional 'for loops' for IE 11
+      for (const mutation of mutationsList) {
+        if (
+          mutation.type === 'childList' &&
+          mutation.target instanceof Element
+        ) {
+          refreshState();
+        }
+      }
+    });
+    observer.observe(ref.current, {
+      childList: true,
+      subtree: true,
+    });
+    ref.current.addEventListener('scroll', refreshState);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', refreshState);
+    };
+  }, [ref]);
+
   return {
+    reachTop,
+    reachBottom,
     scrollTo,
+    scrollToPage: (page: number) => {
+      scrollTo(page * size);
+    },
+    refreshState,
+    refreshSize,
   };
 };
 
