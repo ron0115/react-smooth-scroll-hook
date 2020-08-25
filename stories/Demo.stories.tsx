@@ -4,7 +4,7 @@ import { Description } from '@storybook/addon-docs/dist/blocks';
 import './index.css';
 
 export default {
-  title: '@Hooks/useSmoothScroll',
+  title: 'useSmoothScroll',
   component: useSmoothScroll,
 };
 
@@ -51,7 +51,7 @@ Demo.storyName = 'Basic';
 export const DirectionX = () => {
   const [speed, setSpeed] = useState(50);
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollTo } = useSmoothScroll({
+  const { scrollTo, reachTop, reachBottom, scrollToPage } = useSmoothScroll({
     ref,
     direction: 'x',
     speed,
@@ -61,8 +61,8 @@ export const DirectionX = () => {
   };
   return (
     <>
-      <button onClick={() => scrollTo('#x-item-40')}>
-        scrollTo('#x-item-40')
+      <button onClick={() => scrollTo('#x-item-20')}>
+        scrollTo('#x-item-20')
       </button>
       <button onClick={() => scrollTo(Infinity)}>
         scrollTo Edge - scrollTo(Infinity)
@@ -72,18 +72,30 @@ export const DirectionX = () => {
       </button>
       <button onClick={() => scrollTo(100)}>scrollTo(100)</button>
       <button onClick={() => scrollTo(-100)}>scrollTo(-100)</button>
+
       <br />
       <div>
-        speed：
+        speed:{speed}
+        <br />
         <input
           value={speed}
           onChange={onChange}
           type="range"
-          min={50}
+          min={100}
           max={500}
         />
+        <br />
+        reachTop: {String(reachTop)}
+        <br />
+        reachBottom: {String(reachBottom)}
       </div>
       <br />
+      <button disabled={reachBottom} onClick={() => scrollToPage(1)}>
+        scrollToPage(1)
+      </button>
+      <button disabled={reachTop} onClick={() => scrollToPage(-1)}>
+        scrollToPage(-1)
+      </button>
 
       <div
         ref={ref}
@@ -97,7 +109,7 @@ export const DirectionX = () => {
             padding: '10px',
           }}
         >
-          {Array(100)
+          {Array(50)
             .fill(null)
             .map((_item, i) => (
               <div
