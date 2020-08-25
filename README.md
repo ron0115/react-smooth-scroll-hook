@@ -2,7 +2,7 @@
 
 This is a hook to control your scrollbar in react component!
 
-Basically; `useSmoothScroll` hook checks the `HTMLElement`'s API `scrollTo`, otherwise, use `requestAnimationFrame` to finish smooth scroll behaviour!
+Basically; `useSmoothScroll` hook use `requestAnimationFrame` to finish smooth scroll behaviour!
 
 If you want to control the `speed` of scroll behaviour, it defaults to use `requestAnimationFrame` mode.
 
@@ -21,7 +21,7 @@ If you want to control the `speed` of scroll behaviour, it defaults to use `requ
 ## Installation
 
 ```sh
-npm install react-smotth-scroll-hook
+npm install react-smooth-scroll-hook
 ```
 
 ## Basic Usage
@@ -72,11 +72,11 @@ export const Demo = () => {
 - **scrollTo** `(string|number) => void`
 
   - Pass `number`: the distance to scroll, e.g. `scrollTo(400)`
-  - Pass `string`: the element seletor you want to scrollTo, passing to `document.querySelector`, e.g. `scrollTo('#your-dom-id')`
+  - Pass `string`: the element seletor you want to scrollTo, meanwhile passing to `document.querySelector`, e.g. `scrollTo('#your-dom-id')`
 
-- **reachTop** `boolean`: Whether it is reach top of scrollContainer
+- **reachTop** `boolean`: Whether it has reached the top of scrollContainer
 
-- **reachBottom** `boolean`: Whether it is reach bottom of scrollContainer
+- **reachBottom** `boolean`: Whether it has reached the bottom of scrollContainer
 
 - **scrollToPage** `(number) => void`: Pass page(`number`), which scroll to a distance as multiples of container size(`offsetWidth`/`offsetHeight`)
   .e.g `scrollToPage(1)`,`scrollToPage(-1)`
