@@ -5,7 +5,7 @@ on:
       - master
     paths-ignore:
       - '.github/main.yaml'
-      - '**/README.md'
+      - 'README.md'
 jobs:
   build:
     runs-on: ubuntu-latest
