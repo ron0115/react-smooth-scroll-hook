@@ -2,7 +2,7 @@
 
 This is a hook to control your scrollbar in react component!
 
-**Live demo is [here](https://ron0115.github.io/react-smooth-scroll-hook/?path=/docs/hooks-usesmoothscroll--docs).**
+**Live demo is <a target="_blank" href="https://codesandbox.io/s/react-smooth-scroll-hook-vhudw?file=/src/App.js" >Here</a>.**
 
 Basically; `useSmoothScroll` hook checks the `HTMLElement`'s API `scrollTo`, otherwise, use `requestAnimationFrame` to finish smooth scroll behaviour!
 
@@ -10,9 +10,9 @@ If you want to control the `speed` of scroll behaviour, it defaults to use `requ
 
 ## Feature
 
-- Provide `scrollTo`, you don't need to warn about compatibility, it use rAF api on low version browsers.
-- Provide `speed` on your demand.
-- Provide direction option ,you can set `x` for vertical, `y` for horizontal.
+- You don't need to warn about compatibility, it use rAF api on low version browsers.
+- Provide `speed` on your demand, otherwise it would use the native API `element.scrollTo`.
+- Provide `direction` option ,you can set `x` for vertical, `y` for horizontal.
 
 ## Installation
 
@@ -33,7 +33,7 @@ export const Demo = () => {
 
   return (
     <>
-      <button onClick={() => scrollTo('#y-20')}>scrollTo('#y-20')</button>
+      <button onClick={() => scrollTo('#item-20')}>scrollTo('#item-20')</button>
       <div
         ref={ref}
         style={{
@@ -45,7 +45,7 @@ export const Demo = () => {
           {Array(100)
             .fill(null)
             .map((_item, i) => (
-              <div key={i} id={`y-${i}`}>
+              <div key={i} id={`item-${i}`}>
                 y-{i}
               </div>
             ))}
@@ -59,13 +59,13 @@ export const Demo = () => {
 ## Props
 
 - **ref:** `RefObject<HTMLElement>`, container which set as `overflow: scroll`.
-- **speed:** Distance in one frame to move, useful in `requestAnimationFrame` mode.
+- **speed:** Distance in one frame to move in `requestAnimationFrame` mode, defaults to `100`, if not provide, speed depends on native API `scrollTo`.
 - **direction:** Scroll direction
 - **threshold:** Judge scroll is finished has an error range, .defaults to `1`.
 
-### Props of scrollTo
+### Returns of Hook
 
-`scrollTo(string | number)`
+- `scrollTo(string | number)`
 
-- Pass `number`: the distance to scroll
-- Pass `string`: the element seletor you want to scrollTo, passing to `document.querySelector`, such as `#id`
+  - Pass `number`: the distance to scroll, e.g. `scrollTo(400)`
+  - Pass `string`: the element seletor you want to scrollTo, passing to `document.querySelector`, e.g. `scrollTo('#your-dom-id')`

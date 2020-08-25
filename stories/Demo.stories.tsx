@@ -67,6 +67,9 @@ export const DirectionX = () => {
       <button onClick={() => scrollTo(Infinity)}>
         scrollTo Edge - scrollTo(Infinity)
       </button>
+      <button onClick={() => scrollTo(-Infinity)}>
+        scrollTo Edge - scrollTo(-Infinity)
+      </button>
       <button onClick={() => scrollTo(100)}>scrollTo(100)</button>
       <button onClick={() => scrollTo(-100)}>scrollTo(-100)</button>
       <br />
