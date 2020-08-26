@@ -10,7 +10,7 @@ The `useSmoothScroll` hook finish smooth scroll behaviour in react component by 
 
 - 🚀 You don't need to warn about compatibility, it use `requsetAnimationFrame` api to finish smooth scroll behaviour.
 
-- 👉 Provide `direction` option ,you can set `x` for vertical, `y` for horizontal.
+- 👉 Provide `direction` option ,you can set `x` for horizontal, `y` for vertical.
 
 - 💧 No Third Party dependencies, light and pure.
 
@@ -60,7 +60,7 @@ export const Demo = () => {
 
 - **ref:** `RefObject<HTMLElement>`, container which set as `overflow: scroll`.
 - **speed:** Distance in one frame to move in `requestAnimationFrame` mode, defaults to `100`, if not provide, speed depends on native API `scrollTo`.
-- **direction:** Scroll direction
+- **direction:** Scroll direction, `x` for horizontal or `y` for vertical.
 - **threshold:** Judge scroll is finished has an error range, .defaults to `1`.
 
 ### Returns of Hook
@@ -70,13 +70,13 @@ export const Demo = () => {
   - Pass `number`: the distance to scroll, e.g. `scrollTo(400)`
   - Pass `string`: the element seletor you want to scrollTo, meanwhile passing to `document.querySelector`, e.g. `scrollTo('#your-dom-id')`
 
-- **reachTop** `boolean`: Whether it has reached the top of scrollContainer
+- **reachTop** `boolean`: Whether it has reached the top of refContainer
 
-- **reachBottom** `boolean`: Whether it has reached the bottom of scrollContainer
+- **reachBottom** `boolean`: Whether it has reached the bottom of refContainer
 
 - **scrollToPage** `(number) => void`: Pass page(`number`), which scroll to a distance as multiples of container size(`offsetWidth`/`offsetHeight`)
   .e.g `scrollToPage(1)`,`scrollToPage(-1)`
 
-- **refreshState** `() => void`: Manually refresh the state of `reachTop` and `reachBottom`, just an API as you need, and possibly useful in some situation.
+- **refreshState** `() => void`: Manually refresh the state of `reachTop` and `reachBottom`, possibly useful in some situation.
 
-- **refreshSize** `() => void`: Manually refresh the size of ref container, just an API as you need, and possibly useful in some situation.
+- **refreshSize** `() => void`: Manually refresh the size of ref container, possibly useful in some situation.
