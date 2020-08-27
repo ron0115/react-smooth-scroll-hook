@@ -9,6 +9,7 @@ export default {
 };
 import { Demo } from '../example/Demo.stories';
 import { DirectionX } from '../example/DirectionX.stories';
+import { Body } from '../example/Body.stories';
 export const Docs = () => (
   <>
     <Description markdown={require('../README.md').default} />
@@ -16,7 +17,10 @@ export const Docs = () => (
 );
 export { Demo };
 export { DirectionX };
+export { Body };
 // @ts-ignore
 Demo.storyName = 'Basic';
 // @ts-ignore
 DirectionX.storyName = 'More Use';
+// @ts-ignore
+Body.storyName = 'Body Parent';

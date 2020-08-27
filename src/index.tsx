@@ -51,9 +51,17 @@ const getRelativeDistance = (
       console.warn('Please pass correct selector string for scrollTo()!');
       return 0;
     }
-    const dis =
-      elm.getBoundingClientRect()[attrMap.leftTop] -
-      parent.getBoundingClientRect()[attrMap.leftTop];
+    let dis = 0;
+
+    // if parent is document.documentElement or document.body
+    if (!parent.parentElement || !parent.parentElement.parentElement) {
+      dis = elm.getBoundingClientRect()[attrMap.leftTop];
+    } else {
+      dis =
+        elm.getBoundingClientRect()[attrMap.leftTop] -
+        parent.getBoundingClientRect()[attrMap.leftTop];
+    }
+
     return dis;
   }
   return 0;
@@ -111,7 +119,7 @@ export const useSmoothScroll = ({
     isBottomEdge() ? setReachBottom(true) : setReachBottom(false);
   });
 
-  const scrollTo = (target?: number | string) => {
+  const scrollTo = (target?: number | string, offset?: number) => {
     if (!ref || !ref.current) {
       console.warn(
         'Please pass `ref` property for your scroll container! \n Get more info at https://github.com/ron0115/react-smooth-scroll-hook'
@@ -125,8 +133,15 @@ export const useSmoothScroll = ({
         'Please pass a valid property for `scrollTo()`! \n Get more info at https://github.com/ron0115/react-smooth-scroll-hook'
       );
     }
+
     const initScrollLeftTop = elm[attrMap.scrollLeftTop];
-    const distance = getRelativeDistance(target, elm, attrMap);
+
+    let distance = getRelativeDistance(target, elm, attrMap);
+    console.log(distance);
+    // set a offset
+    if (typeof offset === 'number') {
+      distance += offset;
+    }
 
     let _speed = speed;
     const cb = () => {

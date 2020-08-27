@@ -17,7 +17,7 @@ on:
       - README.md
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -52,7 +52,7 @@ jobs:
       #   env:
       #     CI: true
 
-      - name: Release
+      - name: Deploy
         run: |
           npm run deploy-storybook -- --ci
         env:

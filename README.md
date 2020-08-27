@@ -26,7 +26,12 @@ npm install react-smooth-scroll-hook
 import React, { useRef } from 'react';
 import useSmoothScroll from 'react-smooth-scroll-hook';
 export const Demo = () => {
-  const ref = useRef<HTMLDivElement>(null);
+  // A custom scroll container
+  const ref = useRef(null);
+
+  // Also support document.body / document.documentElement, and you don't need to set a ref passing to jsx
+  const ref = useRef(document.body);
+
   const { scrollTo } = useSmoothScroll({
     ref,
     speed: 100,
@@ -37,6 +42,7 @@ export const Demo = () => {
     <>
       <button onClick={() => scrollTo('#item-20')}>scrollTo('#item-20')</button>
       <div
+        // if use custom scroll container, pass ref
         ref={ref}
         style={{
           overflowY: 'scroll',

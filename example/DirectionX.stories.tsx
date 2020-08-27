@@ -1,13 +1,13 @@
-import React, { useState, useRef } from "react";
-import useSmoothScroll from "react-smooth-scroll-hook";
+import React, { useState, useRef } from 'react';
+import useSmoothScroll from 'react-smooth-scroll-hook';
 
 export const DirectionX = () => {
   const [speed, setSpeed] = useState(200);
   const ref = useRef<HTMLDivElement>(null);
   const { scrollTo, reachTop, reachBottom, scrollToPage } = useSmoothScroll({
     ref,
-    direction: "x",
-    speed
+    direction: 'x',
+    speed,
   });
   const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setSpeed(Number(evt.target.value));
@@ -28,8 +28,11 @@ export const DirectionX = () => {
       <br />
       <strong>
         Pass string:
-        <button onClick={() => scrollTo("#x-item-20")}>
+        <button onClick={() => scrollTo('#x-item-20')}>
           scrollTo('#x-item-20')
+        </button>
+        <button onClick={() => scrollTo('#x-item-20', -10)}>
+          scrollTo('#x-item-20', -10)
         </button>
       </strong>
       <br />
@@ -63,13 +66,13 @@ export const DirectionX = () => {
       <div
         ref={ref}
         style={{
-          overflowX: "scroll"
+          overflowX: 'scroll',
         }}
       >
         <div
           style={{
-            display: "flex",
-            padding: "10px"
+            display: 'flex',
+            padding: '10px',
           }}
         >
           {Array(50)
@@ -80,7 +83,7 @@ export const DirectionX = () => {
                 id={`x-item-${i}`}
                 style={{
                   flexShrink: 0,
-                  padding: "10px"
+                  padding: '10px',
                 }}
               >
                 x-item-{i}
