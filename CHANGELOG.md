@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.2.0...v1.3.0) (2020-08-27)
+
+
+### Features
+
+* support documentParent mode ([0deb1bd](https://github.com/ron0115/react-smooth-scroll-hook/commit/0deb1bdaa5ee0824426cc0df320c276c79923b50))
+
 # [1.2.0](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.1.0...v1.2.0) (2020-08-25)
 
 
