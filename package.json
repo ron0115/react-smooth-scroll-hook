@@ -51,11 +51,11 @@
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/npm": "^7.0.5",
     "@semantic-release/release-notes-generator": "^9.0.1",
-    "@storybook/addon-actions": "^6.0.16",
-    "@storybook/addon-docs": "^6.0.16",
-    "@storybook/addon-links": "^6.0.16",
-    "@storybook/addons": "^6.0.16",
-    "@storybook/react": "^6.0.16",
+    "@storybook/addon-actions": "^6.0.20",
+    "@storybook/addon-docs": "^6.0.20",
+    "@storybook/addon-links": "^6.0.20",
+    "@storybook/addons": "^6.0.20",
+    "@storybook/react": "^6.0.20",
     "@storybook/storybook-deployer": "^2.8.6",
     "@types/react": "^16.9.46",
     "@types/react-dom": "^16.9.8",
@@ -81,7 +81,7 @@
         {
           "releaseRules": [
             {
-              "type": "/(feat|fix)/",
+              "type": "{feat,fix}",
               "release": "patch"
             }
           ]

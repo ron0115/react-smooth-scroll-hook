@@ -1,7 +1,7 @@
-import * as ReactDOM from "react-dom";
-import * as React from "react";
-import { Demo } from "./Demo.stories";
-import { DirectionX } from "./DirectionX.stories";
+import * as ReactDOM from 'react-dom';
+import * as React from 'react';
+import { Demo } from './Demo.stories';
+import { DirectionX } from './DirectionX.stories';
 export default function App() {
   return (
     <div className="App">
@@ -14,4 +14,4 @@ export default function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
