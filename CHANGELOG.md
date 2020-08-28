@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.3.1...v1.3.2) (2020-08-28)
+
+
+### Bug Fixes
+
+* detect some event when dom change ([5dc4ef8](https://github.com/ron0115/react-smooth-scroll-hook/commit/5dc4ef83234550c22a005ebff1dc309b860697b3))
+
 ## [1.3.1](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.3.0...v1.3.1) (2020-08-28)
 
 
