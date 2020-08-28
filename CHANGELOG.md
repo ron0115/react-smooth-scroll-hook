@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.3.0...v1.3.1) (2020-08-28)
+
+
+### Features
+
+* useScrollWatch hook to detect scroll event ([7c0a42c](https://github.com/ron0115/react-smooth-scroll-hook/commit/7c0a42cf9ac47fb475eff980f2b6b9da24cb303f))
+
 # [1.3.0](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.2.0...v1.3.0) (2020-08-27)
 
 
