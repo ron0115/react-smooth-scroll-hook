@@ -65,14 +65,15 @@ export const useScrollWatch = (props: useScrollWathType) => {
 
     return -1;
   };
-  const refreshScrollTop = debounce(() => {
+  const refresh = debounce(() => {
     setScrollTop(getScrollTop());
+    setPosList(getPosList());
   }, 100);
 
   const [posList, setPosList] = useState<number[]>([]);
 
   useEffect(() => {
-    setPosList(getPosList());
+    refresh();
   }, [ref]);
 
   const curIndex = getCurIndex(scrollTop, posList);
@@ -80,15 +81,15 @@ export const useScrollWatch = (props: useScrollWathType) => {
   useEffect(() => {
     if (!ref.current) return;
     const elm = isWindowScrollParent(ref.current) ? window : ref.current;
-    const observer = new window.MutationObserver(debounce(getPosList, 1000));
+    const observer = new window.MutationObserver(refresh);
     observer.observe(ref.current, {
       childList: true,
       subtree: true,
     });
-    elm.addEventListener('scroll', refreshScrollTop);
+    elm.addEventListener('scroll', refresh);
     return () => {
       observer.disconnect();
-      elm && elm.removeEventListener('scroll', refreshScrollTop);
+      elm && elm.removeEventListener('scroll', refresh);
     };
   }, [ref]);
 
