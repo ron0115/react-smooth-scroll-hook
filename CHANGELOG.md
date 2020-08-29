@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.3.2...v1.3.3) (2020-08-29)
+
+
+### Features
+
+* **API:** deprecated scrollToPage ([be27bde](https://github.com/ron0115/react-smooth-scroll-hook/commit/be27bdeea3af88e972ed29883680218d04ad9f31))
+
 ## [1.3.2](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.3.1...v1.3.2) (2020-08-28)
 
 
