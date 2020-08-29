@@ -4,7 +4,12 @@ import useSmoothScroll from 'react-smooth-scroll-hook';
 export const DirectionX = () => {
   const [speed, setSpeed] = useState(200);
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollTo, reachTop, reachBottom, scrollToPage } = useSmoothScroll({
+  const {
+    scrollTo,
+    reachedTop,
+    reachedBottom,
+    containerSize,
+  } = useSmoothScroll({
     ref,
     direction: 'x',
     speed,
@@ -50,18 +55,21 @@ export const DirectionX = () => {
       <br />
       <strong>
         Scroll to Page:
-        <button disabled={reachBottom} onClick={() => scrollToPage(1)}>
-          scrollToPage(1)
+        <button
+          disabled={reachedBottom}
+          onClick={() => scrollTo(containerSize)}
+        >
+          scrollTo(containerSize)
         </button>
-        <button disabled={reachTop} onClick={() => scrollToPage(-1)}>
-          scrollToPage(-1)
+        <button disabled={reachedTop} onClick={() => scrollTo(-containerSize)}>
+          scrollTo(-containerSize)
         </button>
       </strong>
       <br />
       <br />
-      reachTop: {String(reachTop)}
+      reachedTop: {String(reachedTop)}
       <br />
-      reachBottom: {String(reachBottom)}
+      reachedBottom: {String(reachedBottom)}
       <br />
       <div
         ref={ref}

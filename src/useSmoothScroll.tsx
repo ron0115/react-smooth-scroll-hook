@@ -10,12 +10,13 @@ import {
 } from './utils';
 
 export type UseSmoothScrollType = {
-  /** the container dom RefObject which use `overflow:scroll` */
+  /** the container dom RefObject which use `overflow:scroll`, if scroll whole document, pass `ref = useRef(document.documentElement)` or `useRef(document.body)`. */
   ref: React.RefObject<HTMLElement>;
   /** distance per frame, reflects to speed while scrolling */
   speed?: number;
   /** scroll direction, you can use 'x` for vertical, 'y` for horizontal */
   direction?: DirectionType;
+  /** allowable distance beteween nowable state the judgement edge */
   threshold?: number;
 };
 
@@ -56,8 +57,8 @@ export const useSmoothScroll = ({
 }: UseSmoothScrollType) => {
   const attrMap = getAttrMap(direction);
 
-  const [reachTop, setReachTop] = useState(true);
-  const [reachBottom, setReachBottom] = useState(true);
+  const [reachedTop, setReachedTop] = useState(true);
+  const [reachedBottom, setReachedBottom] = useState(true);
   const [size, setSize] = useState(0);
 
   const isTopEdge = () => {
@@ -86,8 +87,8 @@ export const useSmoothScroll = ({
   });
 
   const refreshState = debounce((_evt: Event) => {
-    isTopEdge() ? setReachTop(true) : setReachTop(false);
-    isBottomEdge() ? setReachBottom(true) : setReachBottom(false);
+    isTopEdge() ? setReachedTop(true) : setReachedTop(false);
+    isBottomEdge() ? setReachedBottom(true) : setReachedBottom(false);
   });
 
   const scrollTo = (target?: number | string, offset?: number) => {
@@ -194,18 +195,21 @@ export const useSmoothScroll = ({
       observer.disconnect();
       elm && elm.removeEventListener('scroll', refreshState);
     };
-  }, [ref]);
+  }, [ref, refreshState]);
 
   return {
-    reachTop,
-    reachBottom,
+    reachedTop,
+    reachedBottom,
+    containerSize: size,
     scrollTo,
+    /** @deprecated replace with scrollTo(n * containerSize) */
     scrollToPage: (page: number) => {
       scrollTo(page * size);
     },
+    /** @deprecated */
     refreshState,
+    /** @deprecated */
     refreshSize,
   };
 };
-
 export default useSmoothScroll;

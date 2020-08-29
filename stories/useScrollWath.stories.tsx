@@ -3,7 +3,7 @@ import { useScrollWatch } from '../src/index';
 import './index.css';
 
 export default {
-  title: 'hook/useScrollWatch',
+  title: 'More/useScrollWatch',
   component: useScrollWatch,
 };
 
@@ -19,7 +19,7 @@ export const Docs = () => {
 export { WindowMode, ScrollConatainerMode, DirectionX };
 
 // @ts-ignore
-WindowMode.storyName = 'Body Parent';
+WindowMode.storyName = 'Window Parent Mode';
 // @ts-ignore
 ScrollConatainerMode.storyName = 'ScrollConatainer Mode';
 // @ts-ignore

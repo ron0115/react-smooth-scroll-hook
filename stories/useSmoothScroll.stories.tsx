@@ -4,7 +4,7 @@ import useSmoothScroll from '../src/index';
 import './index.css';
 
 export default {
-  title: 'hook/useSmoothScroll',
+  title: 'Main/useSmoothScroll',
   component: useSmoothScroll,
 };
 import { Demo } from '../example/Demo.stories';

@@ -6,16 +6,18 @@ import {
   isWindowScrollParent,
 } from './utils';
 
-type ListType = {
-  href: string;
-  offset?: number;
-}[];
-
 export type useScrollWathType = {
-  /** the container dom RefObject which use `overflow:scroll` */
+  /** the container dom RefObject which use `overflow:scroll`,if scroll whole document, pass `ref = useRef(document.documentElement)` or `useRef(document.body)`. */
   ref: React.RefObject<HTMLElement>;
-  list: ListType;
+  list: {
+    /** dom id of Element */
+    href: string;
+    /** the scroll position judge preset of each Element */
+    offset?: number;
+  }[];
+  /** global offset for every Element of list */
   offset?: number;
+  /** scroll axis, x for horizontal, y for vertical */
   direction?: DirectionType;
 };
 
@@ -74,7 +76,7 @@ export const useScrollWatch = (props: useScrollWathType) => {
 
   useEffect(() => {
     refresh();
-  }, [ref]);
+  }, [ref, refresh]);
 
   const curIndex = getCurIndex(scrollTop, posList);
 
@@ -91,7 +93,7 @@ export const useScrollWatch = (props: useScrollWathType) => {
       observer.disconnect();
       elm && elm.removeEventListener('scroll', refresh);
     };
-  }, [ref]);
+  }, [ref, refresh]);
 
   return {
     curIndex,
