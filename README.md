@@ -6,7 +6,7 @@
 
 The `useSmoothScroll` hook finish smooth scroll behaviour in react component by `requestAnimationFrame`.
 
-**Storybook Docs are <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >Here</a>.**
+> **Storybook Docs are <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >Here</a>.**
 
 ## Feature
 
@@ -23,8 +23,6 @@ npm install react-smooth-scroll-hook
 ```
 
 ## useSmoothScroll
-
-**Live demo is <a target="_blank" href="https://codesandbox.io/s/usesmoothscroll-2zt20?file=/Body.stories.tsx" >Here</a>.**(Codesandbox)
 
 ### Quick Start
 
@@ -93,17 +91,22 @@ export const Demo = () => {
 
 - **refreshSize** `() => void`: Manually refresh the size of ref container, possibly useful in some situation.
 
+### Demo
+
+- **<a target="_blank" href="https://codesandbox.io/s/usesmoothscroll-2zt20?file=/Body.stories.tsx" >CodeSandbox</a>**
+- **<a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >Storybook</a>**
+
 ## useScrollWatch
 
 Proviede a `list` of dom like below, and pass the parent container `ref` to hook, it return the scrollbar current state of `scrollTop`, `curIndex`, `curItem`.
 
-**Live demo is <a target="_blank" href="https://codesandbox.io/s/gifted-field-5b3ui?file=/UseScrollWatch.stories.tsx:9-24" >Here</a>.**(Codesandbox)
-
 ### Quick Start
 
 ```tsx
+import React, { useRef } from 'react';
+import { useScrollWatch } from 'react-smooth-scroll-hook';
 export const ScrollConatainerMode = () => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
   const { scrollTop, curIndex, curItem } = useScrollWatch({
     ref,
     list: [
@@ -153,8 +156,6 @@ export const ScrollConatainerMode = () => {
 };
 ```
 
-> Click <a href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/hook-usescrollwatch--docs" target="_blank">Here</a> to know more and see Demo.
-
 ### Props
 
 - **list** `Array({href, offset})`: `href` is elemet selector string, which passing to `querySelector`, such as `#element-id`
@@ -165,3 +166,8 @@ export const ScrollConatainerMode = () => {
 - **scrollTop** `number`: current scrollTop of scroll container.
 - **curIndex** `number`: current Index of list
 - **curItem** `{href, offset}`: current Item of list
+
+### Demo
+
+- **<a target="_blank" href="https://codesandbox.io/s/gifted-field-5b3ui?file=/UseScrollWatch.stories.tsx:9-24" >CodeSandbox</a>**
+- **<a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/more-usescrollwatch--docs" >Storybook</a>**
