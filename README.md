@@ -1,10 +1,12 @@
-# react-smooth-scroll-hook
+# [react-smooth-scroll-hook](https://github.com/ron0115/react-smooth-scroll-hook)
+
+[![GitHub license](https://img.shields.io/github/license/ron0115/react-smooth-scroll-hook?style=flat)](https://github.com/ron0115/react-smooth-scroll-hook/blob/master/LICENSE)
+[![npm version](http://img.shields.io/npm/v/react-smooth-scroll-hook.svg?style=flat)](https://npmjs.org/package/react-smooth-scroll-hook)
+[![GitHub stars](https://img.shields.io/github/stars/ron0115/react-smooth-scroll-hook?style=flat)](https://github.com/ron0115/react-smooth-scroll-hook/stargazers)
 
 The `useSmoothScroll` hook finish smooth scroll behaviour in react component by `requestAnimationFrame`.
 
-**Examples are <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/hook-usesmoothscroll--docs" >Here</a>.**(Storybook)
-
-**Live demo is <a target="_blank" href="https://codesandbox.io/s/reverent-cerf-ks4xh?file=/index.tsx" >Here</a>.**(Codesandbox)
+**Storybook Docs are <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >Here</a>.**
 
 ## Feature
 
@@ -22,7 +24,9 @@ npm install react-smooth-scroll-hook
 
 ## useSmoothScroll
 
-### Basic Usage
+**Live demo is <a target="_blank" href="https://codesandbox.io/s/usesmoothscroll-2zt20?file=/Body.stories.tsx" >Here</a>.**(Codesandbox)
+
+### Quick Start
 
 ```tsx
 import React, { useRef } from 'react';
@@ -92,6 +96,10 @@ export const Demo = () => {
 ## useScrollWatch
 
 Proviede a `list` of dom like below, and pass the parent container `ref` to hook, it return the scrollbar current state of `scrollTop`, `curIndex`, `curItem`.
+
+**Live demo is <a target="_blank" href="https://codesandbox.io/s/gifted-field-5b3ui?file=/UseScrollWatch.stories.tsx:9-24" >Here</a>.**(Codesandbox)
+
+### Quick Start
 
 ```tsx
 export const ScrollConatainerMode = () => {

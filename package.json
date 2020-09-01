@@ -21,7 +21,7 @@
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 --docs",
     "build-storybook": "build-storybook --docs",
     "deploy-storybook": "storybook-to-ghpages",
     "release": "semantic-release"
