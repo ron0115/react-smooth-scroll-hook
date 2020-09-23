@@ -10,7 +10,7 @@ export default function App() {
       <h1>useSmoothScroll</h1>
       <h2>Demo.stories.tsx</h2>
       <Demo />
-      <h2>Direction.stories.tsx</h2>
+      <h2>DirectionX.stories.tsx</h2>
       <DirectionX />
       <h2>Body.stories.tsx</h2>
       <Body />
