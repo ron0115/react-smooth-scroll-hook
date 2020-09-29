@@ -2,9 +2,14 @@ import React, { useState, useRef } from 'react';
 import useSmoothScroll from 'react-smooth-scroll-hook';
 
 export const DirectionX = () => {
-  const [speed, setSpeed] = useState(50);
+  const [speed, setSpeed] = useState(200);
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollTo, reachTop, reachBottom, scrollToPage } = useSmoothScroll({
+  const {
+    scrollTo,
+    reachedTop,
+    reachedBottom,
+    containerSize,
+  } = useSmoothScroll({
     ref,
     direction: 'x',
     speed,
@@ -14,21 +19,8 @@ export const DirectionX = () => {
   };
   return (
     <>
-      <button onClick={() => scrollTo('#x-item-20')}>
-        scrollTo('#x-item-20')
-      </button>
-      <button onClick={() => scrollTo(Infinity)}>
-        scrollTo Edge - scrollTo(Infinity)
-      </button>
-      <button onClick={() => scrollTo(-Infinity)}>
-        scrollTo Edge - scrollTo(-Infinity)
-      </button>
-      <button onClick={() => scrollTo(100)}>scrollTo(100)</button>
-      <button onClick={() => scrollTo(-100)}>scrollTo(-100)</button>
-
-      <br />
       <div>
-        speed:{speed}
+        <strong>speed:{speed}</strong>
         <br />
         <input
           value={speed}
@@ -37,19 +29,48 @@ export const DirectionX = () => {
           min={100}
           max={500}
         />
-        <br />
-        reachTop: {String(reachTop)}
-        <br />
-        reachBottom: {String(reachBottom)}
       </div>
       <br />
-      <button disabled={reachBottom} onClick={() => scrollToPage(1)}>
-        scrollToPage(1)
-      </button>
-      <button disabled={reachTop} onClick={() => scrollToPage(-1)}>
-        scrollToPage(-1)
-      </button>
-
+      <strong>
+        Pass string:
+        <button onClick={() => scrollTo('#x-item-20')}>
+          scrollTo('#x-item-20')
+        </button>
+        <button onClick={() => scrollTo('#x-item-20', -10)}>
+          scrollTo('#x-item-20', -10)
+        </button>
+      </strong>
+      <br />
+      <strong>
+        Pass number:
+        <button onClick={() => scrollTo(100)}>scrollTo(100)</button>
+        <button onClick={() => scrollTo(-100)}>scrollTo(-100)</button>
+      </strong>
+      <br />
+      <strong>
+        Scroll to Edge:
+        <button onClick={() => scrollTo(Infinity)}>scrollTo Bottom</button>
+        <button onClick={() => scrollTo(-Infinity)}>scrollTo Top</button>
+      </strong>
+      <br />
+      <strong>
+        Scroll to Page:
+        <button
+          disabled={reachedBottom}
+          onClick={() => scrollTo(containerSize)}
+        >
+          scrollTo(containerSize)
+        </button>
+        <button disabled={reachedTop} onClick={() => scrollTo(-containerSize)}>
+          scrollTo(-containerSize)
+        </button>
+      </strong>
+      <br />
+      <br />
+      reachedTop: {String(reachedTop)}
+      <br />
+      reachedBottom: {String(reachedBottom)}
+      <br />
       <div
         ref={ref}
         style={{

@@ -1,3 +1,31 @@
+## [1.3.3](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.3.2...v1.3.3) (2020-08-29)
+
+
+### Features
+
+* **API:** deprecated scrollToPage ([be27bde](https://github.com/ron0115/react-smooth-scroll-hook/commit/be27bdeea3af88e972ed29883680218d04ad9f31))
+
+## [1.3.2](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.3.1...v1.3.2) (2020-08-28)
+
+
+### Bug Fixes
+
+* detect some event when dom change ([5dc4ef8](https://github.com/ron0115/react-smooth-scroll-hook/commit/5dc4ef83234550c22a005ebff1dc309b860697b3))
+
+## [1.3.1](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.3.0...v1.3.1) (2020-08-28)
+
+
+### Features
+
+* useScrollWatch hook to detect scroll event ([7c0a42c](https://github.com/ron0115/react-smooth-scroll-hook/commit/7c0a42cf9ac47fb475eff980f2b6b9da24cb303f))
+
+# [1.3.0](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.2.0...v1.3.0) (2020-08-27)
+
+
+### Features
+
+* support documentParent mode ([0deb1bd](https://github.com/ron0115/react-smooth-scroll-hook/commit/0deb1bdaa5ee0824426cc0df320c276c79923b50))
+
 # [1.2.0](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.1.0...v1.2.0) (2020-08-25)
 
 

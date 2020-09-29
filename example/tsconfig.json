@@ -11,13 +11,12 @@
     "strictNullChecks": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "lib": [
-      "es2015",
-      "es2016",
-      "dom"
-    ],
+    "lib": ["es2015", "es2016", "dom"],
     "baseUrl": ".",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "react-smooth-scroll-hook": ["../src"]
+    }
   }
 }

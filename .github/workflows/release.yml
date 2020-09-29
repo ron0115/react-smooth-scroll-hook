@@ -1,0 +1,58 @@
+name: Release
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'src/**'
+
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'src/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Begin CI...
+        uses: actions/checkout@v2
+
+      - name: Use Node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Use cached node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            nodeModules-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        env:
+          CI: true
+
+      # - name: Lint
+      #   run: yarn lint
+      #   env:
+      #     CI: true
+
+      # - name: Test
+      #   run: yarn test --ci --coverage --maxWorkers=2
+      #   env:
+      #     CI: true
+
+      - name: Release
+        run: |
+          yarn build
+          npm run release
+          npm run deploy-storybook -- --ci
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

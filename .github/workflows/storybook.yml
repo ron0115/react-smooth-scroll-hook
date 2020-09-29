@@ -1,19 +1,23 @@
-name: Deploy
+name: Storybook
 on:
   push:
     branches:
       - master
     paths:
-      - 'src/**'
+      - 'stories/**'
+      - 'example/**'
+      - README.md
 
   pull_request:
     branches:
       - master
     paths:
-      - 'src/**'
+      - 'stories/**'
+      - 'example/**'
+      - README.md
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -48,10 +52,8 @@ jobs:
       #   env:
       #     CI: true
 
-      - name: Release
+      - name: Deploy
         run: |
-          yarn build
-          npm run release
           npm run deploy-storybook -- --ci
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
