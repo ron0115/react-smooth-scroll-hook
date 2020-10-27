@@ -21,7 +21,7 @@ export type UseSmoothScrollType = {
 };
 
 // get the relative distance from destination
-const getRelativeDistance = (
+export const getRelativeDistance = (
   target: number | string | undefined,
   parent: HTMLElement,
   attrMap: AttrMapType

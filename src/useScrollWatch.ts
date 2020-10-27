@@ -21,6 +21,23 @@ export type useScrollWathType = {
   direction?: DirectionType;
 };
 
+export const getCurIndex = (scrollTop: number, list: number[]) => {
+  const length = list.length;
+  if (!length) return -1;
+
+  for (let i = 0; i < length; i++) {
+    if (scrollTop < list[i]) {
+      return i - 1;
+    }
+  }
+
+  if (scrollTop >= list[length - 1]) {
+    return list.length - 1;
+  }
+
+  return -1;
+};
+
 export const useScrollWatch = (props: useScrollWathType) => {
   const { ref, list = [], offset, direction = 'y' } = props;
 
@@ -40,33 +57,18 @@ export const useScrollWatch = (props: useScrollWathType) => {
       const os = typeof item.offset === 'number' ? item.offset : offset || 0;
       const elm = document.querySelector(item.href);
       if (!elm) return Infinity;
-      return parent && isWindowScrollParent(parent)
+      if (!parent) return Infinity;
+      return isWindowScrollParent(parent)
         ? elm.getBoundingClientRect()[attrMap.leftTop] -
-            parent!.getBoundingClientRect()[attrMap.leftTop] +
+            parent.getBoundingClientRect()[attrMap.leftTop] +
             os
         : elm.getBoundingClientRect()[attrMap.leftTop] -
-            parent!.children[0].getBoundingClientRect()[attrMap.leftTop] +
+            parent.children[0].getBoundingClientRect()[attrMap.leftTop] +
             os;
     });
     return posList;
   };
 
-  const getCurIndex = (scrollTop: number, list: typeof posList) => {
-    const length = list.length;
-    if (!length) return -1;
-
-    for (let i = 0; i < length; i++) {
-      if (scrollTop < list[i]) {
-        return i - 1;
-      }
-    }
-
-    if (scrollTop >= list[length - 1]) {
-      return list.length - 1;
-    }
-
-    return -1;
-  };
   const refresh = debounce(() => {
     setScrollTop(getScrollTop());
     setPosList(getPosList());

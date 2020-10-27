@@ -15,6 +15,7 @@ export const Demo = () => {
       <button onClick={() => scrollTo(400)}>scrollTo(400)</button>
       <br />
       <div
+        id={'demo-stories'}
         ref={ref}
         style={{
           overflowY: 'scroll',

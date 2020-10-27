@@ -23,6 +23,7 @@ export const DirectionX = () => {
         <strong>speed:{speed}</strong>
         <br />
         <input
+          name="speed"
           value={speed}
           onChange={onChange}
           type="range"
