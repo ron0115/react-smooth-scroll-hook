@@ -9,12 +9,10 @@ export const Demo = () => {
 
   return (
     <>
-      <button onClick={() => scrollTo('#y-item-20')} id={'demo-stories-btn-1'}>
+      <button onClick={() => scrollTo('#y-item-20')}>
         scrollTo('#y-item-20')
       </button>
-      <button onClick={() => scrollTo(400)} id={'demo-stories-btn-2'}>
-        scrollTo(400)
-      </button>
+      <button onClick={() => scrollTo(400)}>scrollTo(400)</button>
       <br />
       <div
         id={'demo-stories'}

@@ -2,6 +2,8 @@
   "include": ["src", "types"],
   "compilerOptions": {
     "module": "esnext",
+    // https://github.com/puppeteer/puppeteer/issues/1665#issuecomment-429356629
+    "target": "es2018",
     "lib": ["dom", "esnext"],
     "importHelpers": true,
     "declaration": true,
