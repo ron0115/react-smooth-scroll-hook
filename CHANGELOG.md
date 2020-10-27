@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.3.3...v1.3.4) (2020-10-27)
+
+
+### Bug Fixes
+
+* **useScrollWatch:** do not use ! optional chain ([b931a6d](https://github.com/ron0115/react-smooth-scroll-hook/commit/b931a6dbc7e376de5c78fc60bf2b13cd10f7f507))
+
 ## [1.3.3](https://github.com/ron0115/react-smooth-scroll-hook/compare/v1.3.2...v1.3.3) (2020-08-29)
 
 
