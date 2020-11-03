@@ -4,7 +4,9 @@
 [![npm version](http://img.shields.io/npm/v/react-smooth-scroll-hook.svg?style=flat)](https://npmjs.org/package/react-smooth-scroll-hook)
 [![GitHub stars](https://img.shields.io/github/stars/ron0115/react-smooth-scroll-hook?style=flat)](https://github.com/ron0115/react-smooth-scroll-hook/stargazers)
 
-The `useSmoothScroll` hook finish smooth scroll behaviour in react component by `requestAnimationFrame`.
+It provided `useSmoothScroll` hook for finishing smooth scroll behaviour in react component, and `useScrollWatch` to return some information in scroll container.
+
+It 's a more convenient way to replace native `scrollTo` api.
 
 > **Storybook Docs are <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >Here</a>.**
 

@@ -12,6 +12,18 @@
     "type": "git",
     "url": "https://github.com/ron0115/react-smooth-scroll-hook.git"
   },
+  "description": "a series of react hooks to finish smooth scroll and wath scroll behavior",
+  "keywords": [
+    "react",
+    "hooks",
+    "smooth-scroll",
+    "scrollTo",
+    "scroll",
+    "util",
+    "js",
+    "javascript",
+    "typescript"
+  ],
   "engines": {
     "node": ">=10"
   },
