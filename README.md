@@ -73,7 +73,7 @@ export const Demo = () => {
 - **ref:** `RefObject<HTMLElement>`, container which set as `overflow: scroll`, if scroll whole document, pass `ref = useRef(document.documentElement)` or `useRef(document.body)`.
 - **speed:** Distance in one frame to move in `requestAnimationFrame` mode, defaults to `100`, if not provide, speed depends on native API `scrollTo`.
 - **direction:** Scroll direction, `x` for horizontal or `y` for vertical.
-- **threshold:** Judge scroll is finished has an error range, .defaults to `1`.
+- **threshold:** an error range distance for status of scrolling finished, .defaults to `1`, unit of `px`.
 
 #### Returns of Hook
 
