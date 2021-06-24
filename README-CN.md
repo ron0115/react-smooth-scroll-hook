@@ -12,7 +12,7 @@
 
 一个无痛的方式替换原生 `scrollTo` api.
 
-> **Storybook 文档 <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >点击这里</a>.**
+> **Storybook 文档 <a target="_blank" href="https://ron0115.github.io/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >点击这里</a>.**
 
 ## Feature
 
@@ -93,7 +93,7 @@ export const Demo = () => {
 ### Demo
 
 - **<a target="_blank" href="https://codesandbox.io/s/usesmoothscroll-2zt20?file=/Body.stories.tsx" >CodeSandbox</a>**
-- **<a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >Storybook</a>**
+- **<a target="_blank" href="https://ron0115.github.io/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >Storybook</a>**
 
 ## useScrollWatch
 
@@ -169,4 +169,4 @@ export const ScrollConatainerMode = () => {
 ### Demo
 
 - **<a target="_blank" href="https://codesandbox.io/s/gifted-field-5b3ui?file=/UseScrollWatch.stories.tsx:9-24" >CodeSandbox</a>**
-- **<a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/more-usescrollwatch--docs" >Storybook</a>**
+- **<a target="_blank" href="https://ron0115.github.io/react-smooth-scroll-hook/?path=/docs/more-usescrollwatch--docs" >Storybook</a>**

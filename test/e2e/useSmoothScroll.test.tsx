@@ -29,7 +29,7 @@ async function isIntersectingViewport(
   );
 }
 
-// const url = 'https://ron0115.best/react-smooth-scroll-hook';
+// const url = 'https://ron0115.github.io/react-smooth-scroll-hook';
 const url = 'http://localhost:6006';
 
 describe('useSmoothScroll', () => {
