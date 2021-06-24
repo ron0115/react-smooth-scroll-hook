@@ -4,6 +4,8 @@
 [![npm version](http://img.shields.io/npm/v/react-smooth-scroll-hook.svg?style=flat)](https://npmjs.org/package/react-smooth-scroll-hook)
 [![GitHub stars](https://img.shields.io/github/stars/ron0115/react-smooth-scroll-hook?style=flat)](https://github.com/ron0115/react-smooth-scroll-hook/stargazers)
 
+> Powered By GE-COMPONENTS From YY GFE TEAM
+
 简体中文 | [Englist](./README.md)
 
 提供 `useSmoothScroll` hook 完成在 react 项目中的平滑滚动, 同时， `useScrollWatch` 会返回一些滚动过程中的有用信息。

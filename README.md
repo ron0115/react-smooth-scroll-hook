@@ -4,6 +4,8 @@
 [![npm version](http://img.shields.io/npm/v/react-smooth-scroll-hook.svg?style=flat)](https://npmjs.org/package/react-smooth-scroll-hook)
 [![GitHub stars](https://img.shields.io/github/stars/ron0115/react-smooth-scroll-hook?style=flat)](https://github.com/ron0115/react-smooth-scroll-hook/stargazers)
 
+> Powered By GE-COMPONENTS From YY GFE TEAM
+
 English | [简体中文](./README-CN.md)
 
 It provided `useSmoothScroll` hook for finishing smooth scroll behaviour in react component, and `useScrollWatch` to return some information in scroll container.
