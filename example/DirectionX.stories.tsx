@@ -20,6 +20,35 @@ export const DirectionX = () => {
   return (
     <>
       <div>
+        <div
+          ref={ref}
+          style={{
+            overflowX: 'scroll',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              padding: '10px',
+            }}
+          >
+            {Array(50)
+              .fill(null)
+              .map((_item, i) => (
+                <div
+                  key={i}
+                  id={`x-item-${i}`}
+                  style={{
+                    flexShrink: 0,
+                    padding: '10px',
+                  }}
+                >
+                  x-item-{i}
+                </div>
+              ))}
+          </div>
+        </div>
+        <br />
         <strong>speed:{speed}</strong>
         <br />
         <input
@@ -72,34 +101,6 @@ export const DirectionX = () => {
       <br />
       reachedBottom: {String(reachedBottom)}
       <br />
-      <div
-        ref={ref}
-        style={{
-          overflowX: 'scroll',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            padding: '10px',
-          }}
-        >
-          {Array(50)
-            .fill(null)
-            .map((_item, i) => (
-              <div
-                key={i}
-                id={`x-item-${i}`}
-                style={{
-                  flexShrink: 0,
-                  padding: '10px',
-                }}
-              >
-                x-item-{i}
-              </div>
-            ))}
-        </div>
-      </div>
     </>
   );
 };
