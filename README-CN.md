@@ -4,21 +4,21 @@
 [![npm version](http://img.shields.io/npm/v/react-smooth-scroll-hook.svg?style=flat)](https://npmjs.org/package/react-smooth-scroll-hook)
 [![GitHub stars](https://img.shields.io/github/stars/ron0115/react-smooth-scroll-hook?style=flat)](https://github.com/ron0115/react-smooth-scroll-hook/stargazers)
 
-English | [简体中文](./README-CN.md)
+简体中文 | [Englist](./README.md)
 
-It provided `useSmoothScroll` hook for finishing smooth scroll behaviour in react component, and `useScrollWatch` to return some information in scroll container.
+提供 `useSmoothScroll` hook 完成在 react 项目中的平滑滚动, 同时， `useScrollWatch` 会返回一些滚动过程中的有用信息。
 
-It 's a more convenient way to replace native `scrollTo` api.
+一个无痛的方式替换原生 `scrollTo` api.
 
-> **Storybook Docs are <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >Here</a>.**
+> **Storybook 文档 <a target="_blank" href="https://ron0115.best/react-smooth-scroll-hook/?path=/docs/main-usesmoothscroll--docs" >点击这里</a>.**
 
 ## Feature
 
-- 🚀 You don't need to warn about compatibility, it use `requsetAnimationFrame` api to finish smooth scroll behaviour.
+- 🚀 不用担心兼容性, 使用`requsetAnimationFrame` api 实现平滑滚动.
 
-- 👉 Provide `direction` option ,you can set `x` for horizontal, `y` for vertical.
+- 👉 提供 `direction` 选项 ,设置为`x` / `y`，同时支持水平/垂直滚动.
 
-- 💧 No Third Party dependencies, light and pure.
+- 💧 不依赖第三方工具，纯净且轻量.
 
 ## Installation
 
@@ -28,7 +28,7 @@ npm install react-smooth-scroll-hook
 
 ## useSmoothScroll
 
-### Quick Start
+### 快速开始
 
 ```tsx
 import React, { useRef } from 'react';
@@ -72,21 +72,21 @@ export const Demo = () => {
 
 ### Props
 
-- **ref:** `RefObject<HTMLElement>`, container which set as `overflow: scroll`, if scroll whole document, pass `ref = useRef(document.documentElement)` or `useRef(document.body)`.
-- **speed:** Distance in one frame to move in `requestAnimationFrame` mode, defaults to `100`, if not provide, speed depends on native API `scrollTo`.
-- **direction:** Scroll direction, `x` for horizontal or `y` for vertical.
-- **threshold:** Judge scroll is finished has an error range, .defaults to `1`.
+- **ref:** `RefObject<HTMLElement>`, 滚动容器的 ref，通常设置为 `overflow: scroll`的容器, 如果是整个文档滚动，可以这样传入： `ref = useRef(document.documentElement)` 或者 `useRef(document.body)`.
+- **speed:** `requestAnimationFrame` 模式中，一帧的滚动距离, 默认值是 `100`。
+- **direction:** 滚动方向, `x` 横向 ，或者 `y` 纵向.
+- **threshold:** 判断滚动是否完成的临界距离, 默认为 `1`。
 
 #### Returns of Hook
 
 - **scrollTo** `(string|number) => void`
 
-  - Pass `number`: the distance to scroll, e.g. `scrollTo(400)`
-  - Pass `string`: the element seletor you want to scrollTo, meanwhile passing to `document.querySelector`, e.g. `scrollTo('#your-dom-id')`
+  - 传入 `number`的话: 代表滚动的距离(px), 例如 `scrollTo(400)`。
+  - 传入 `string`的话: 代表滚动到的目标元素，此值透传到 `document.querySelector`, 例如. `scrollTo('#your-dom-id')`
 
-- **reachedTop** `boolean`: Whether it has reached the top of refContainer
+- **reachedTop** `boolean`: 是否到达 refContainer（滚动容器）的顶部。
 
-- **reachedBottom** `boolean`: Whether it has reached the bottom of refContainer
+- **reachedBottom** `boolean`: 是否到达 refContainer（滚动容器）的底部。
 
 ### Demo
 
@@ -95,7 +95,7 @@ export const Demo = () => {
 
 ## useScrollWatch
 
-Proviede a `list` of dom like below, and pass the parent container `ref` to hook, it return the scrollbar current state of `scrollTop`, `curIndex`, `curItem`.
+传入如下例子的`list`数组 , 同时提供滚动容器`ref` ，实时返回当前的滚动相关状态 `scrollTop`, `curIndex`, `curItem`等.
 
 ### Quick Start
 
@@ -155,14 +155,14 @@ export const ScrollConatainerMode = () => {
 
 ### Props
 
-- **list** `Array({href, offset})`: `href` is elemet selector string, which passing to `querySelector`, such as `#element-id`
-- **ref**: the same as ref of `useSmoothScroll`
+- **list** `Array({href, offset})`: `href` 代表元素的 selector, 透传到`querySelector`, 如 `#element-id`
+- **ref**: 见 `useSmoothScroll`
 
 ### Returns of Hook
 
-- **scrollTop** `number`: current scrollTop of scroll container.
-- **curIndex** `number`: current Index of list
-- **curItem** `{href, offset}`: current Item of list
+- **scrollTop** `number`: 当前滚动的 scrollTop.
+- **curIndex** `number`: 当前滚动到的`list`中的元素的`index`值
+- **curItem** `{href, offset}`: 当前滚动位置的`item`
 
 ### Demo
 
